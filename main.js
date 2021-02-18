@@ -1,5 +1,6 @@
 const button = document.querySelector('#btn');
 const input = document.getElementById('answer')
+const reset = document.getElementById('reset')
 let score = 0
 let attemps = 0
 
@@ -11,6 +12,12 @@ input.addEventListener('keyup',function(e){
         check()
     }
 });
+
+function gameReset(){
+    location.reload();
+}
+
+reset.addEventListener("click", gameReset)
 
 
 
@@ -25,18 +32,30 @@ function clearWrong(){
     document.getElementById('feedback').innerHTML = ""
 }
 
+function calcRatio(score){
+    if(score == 0){
+        ratio = 'N/A'
+    }
+    else{
+        ratio = (score/attemps)*100
+    }
+    return Math.round(ratio)
+
+}
 
 function check(){
     const n1 = document.querySelector('#num1').textContent
     const n2 = document.querySelector('#num2').textContent
     const answer = document.getElementById('answer').value
     let result = n1*n2
-    console.log(n1, n2, answer)
+    let ratio = calcRatio(score)
+    console.log(ratio)
     if(result == answer){
         score = score + 1
         attemps ++
         document.getElementById('score').innerHTML = `<h3>Score: ${score}</h3>`
         document.getElementById('attemps').innerHTML = `<h3>Attemps: ${attemps}</h3>`
+        document.getElementById('ratio').innerHTML = `<h3>Ratio: ${ratio}%</h3>`
         document.getElementById('feedback').innerHTML = `<h3>Well done</h3>`
         generateNumbers()
         document.getElementById('answer').value = ''
@@ -47,6 +66,8 @@ function check(){
     else{
         attemps ++
         document.getElementById('feedback').innerHTML = `<h3>Try again ;)</h3>`
+        document.getElementById('answer').value = ''
+        document.getElementById('answer').focus()
         window.setTimeout(clearWrong, 1000);
     }
 
