@@ -3,6 +3,7 @@ const input = document.getElementById('answer')
 const reset = document.getElementById('reset')
 let score = 0
 let attemps = 0
+const ts = () => Math.floor(new Date().getTime() / 1000);
 
 
 button.addEventListener("click", check)
@@ -49,13 +50,19 @@ function check(){
     const answer = document.getElementById('answer').value
     let result = n1*n2
     let ratio = calcRatio(score)
-    console.log(ratio)
-    if(result == answer){
+    console.log(ts)
+    if(answer == ""){
+        document.getElementById('feedback').innerHTML = `<h3>You must answer</h3>`
+        document.getElementById('answer').value = ''
+        document.getElementById('answer').focus()
+        window.setTimeout(clearWrong, 1000);
+    }
+    else if(result == answer){
         score = score + 1
         attemps ++
         document.getElementById('score').innerHTML = `<h3>Score: ${score}</h3>`
         document.getElementById('attemps').innerHTML = `<h3>Attemps: ${attemps}</h3>`
-        document.getElementById('ratio').innerHTML = `<h3>Ratio: ${ratio}%</h3>`
+        document.getElementById('ratio').innerHTML = `<h4>Ratio: ${ratio}%</h4>`
         document.getElementById('feedback').innerHTML = `<h3>Well done</h3>`
         generateNumbers()
         document.getElementById('answer').value = ''

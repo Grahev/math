@@ -8,7 +8,7 @@
     margin: 25px;
 }
 h1 {
-    font-size: 5rem !important;
+    font-size: 3rem !important;
 }
 
 nav{
@@ -25,9 +25,8 @@ nav{
 }
 
 input {
-	
-    font-size: 5rem; 
-    padding: 7px 5px;
+	width: 80px;
+    margin-right: 10px; 
     border: none;
     border-bottom: 1px solid;
 	
@@ -35,6 +34,7 @@ input {
 }
 textarea:focus, input:focus{
     outline: none;
+    
 }
 
 #btn{
@@ -59,4 +59,13 @@ textarea:focus, input:focus{
     margin: 10px;
     padding: 5px 50px;
     background-color: rgb(245, 141, 141);
+}
+.answers{
+    display: flex;
+    justify-content: center;
+}
+tr , th , td  {
+    border: 1px solid black;
+    padding: 1% 10%;
+    text-align: center;
 }
