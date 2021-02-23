@@ -52,11 +52,6 @@ textarea:focus, input:focus{
     
 }
 
-#btn{
-    margin: 5px;
-    padding: 5px 50px;
-    background-color: rgb(93, 240, 124);
-}
 
 .button-container{
     margin: 10px;
@@ -72,11 +67,8 @@ textarea:focus, input:focus{
     padding-bottom: 25px;
 }
 
-#reset{
-    margin: 5px;
-    padding: 5px 50px;
-    background-color: rgb(245, 141, 141);
-}
+
+
 .answers{
     display: flex;
     justify-content: center;

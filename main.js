@@ -1,14 +1,14 @@
 const button = document.querySelector('#btn');
 const input = document.getElementById('answer')
 const reset = document.getElementById('reset')
+const save = document.getElementById('save')
 let score = 0
 let attemps = 0
-const ts = () => Math.floor(new Date().getTime() / 1000);
+let sessionNumbers = []
 
-
+save.addEventListener("click", saveRatioToLocalStorage)
 button.addEventListener("click", check)
 input.addEventListener('keyup',function(e){
-    console.log(e.keyCode)
     if(e.keyCode === 13){
         check()
     }
@@ -44,13 +44,70 @@ function calcRatio(score){
 
 }
 
+
+
+
+function saveRatioToLocalStorage(){
+    let resultsDate;
+    let resultRatio;
+    let resultScore;
+    const currentDate = new Date();
+    let today = currentDate;
+    console.log(`test score: ${score}`)
+
+    //date
+    if(localStorage.getItem('resultsDate') === null) {
+        resultsDate = [];
+    } else {
+        resultsDate = JSON.parse(localStorage.getItem('resultsDate'));
+    }
+    resultsDate.push((today));
+
+    localStorage.setItem('resultsDate', JSON.stringify(resultsDate));
+    
+    //ratio
+    if(localStorage.getItem('resultRatio') === null) {
+        resultRatio = [];
+    } else {
+        resultRatio = JSON.parse(localStorage.getItem('resultRatio'));
+    }
+    resultRatio.push(ratio);
+
+    localStorage.setItem('resultRatio', JSON.stringify(resultRatio));
+
+    //score
+    if(localStorage.getItem('resultScore') === null) {
+        resultScore = [];
+    } else {
+        resultScore = JSON.parse(localStorage.getItem('resultScore'));
+    }
+    resultScore.push(score);
+
+    localStorage.setItem('resultScore', JSON.stringify(resultScore));
+
+    //numbers
+    if(localStorage.getItem('resultNumbers') === null) {
+        resultNumbers = [];
+    } else {
+        resultNumbers = JSON.parse(localStorage.getItem('resultNumbers'));
+    }
+    resultNumbers.push(sessionNumbers);
+
+    localStorage.setItem('resultNumbers', JSON.stringify(resultNumbers));
+    console.log('results saved')
+    alert('Session saved')
+}
+
+
+
+
+
 function check(){
     const n1 = document.querySelector('#num1').textContent
     const n2 = document.querySelector('#num2').textContent
     const answer = document.getElementById('answer').value
     let result = n1*n2
     let ratio = calcRatio(score)
-    console.log(ts)
     if(answer == ""){
         document.getElementById('feedback').innerHTML = `<h3>You must answer</h3>`
         document.getElementById('answer').value = ''
@@ -68,6 +125,7 @@ function check(){
         document.getElementById('answer').value = ''
         document.getElementById('answer').focus()
         window.setTimeout(clearWrong, 1000);
+        sessionNumbers.push({"number1" :n1, "number2":n2, "answer": answer, "correctStatus": true})
 
     }
     else{
@@ -76,10 +134,17 @@ function check(){
         document.getElementById('answer').value = ''
         document.getElementById('answer').focus()
         window.setTimeout(clearWrong, 1000);
+        sessionNumbers.push({"number1" :n1, "number2":n2, "answer": answer, "correctStatus": false})
     }
-
+    console.log(sessionNumbers)
 }
 
 
 
 window.onload = generateNumbers()
+
+
+//results
+
+dataSet = localStorage.getItem('resultsDate');
+console.log(dataSet)
