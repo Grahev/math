@@ -24,24 +24,29 @@ n.forEach(session => {
         let n1 = item.number1;
         let n2 = item.number2;
 
-        if(item.task === 'multiply'){
+        if(item.task === 'division'){
             let row = document.createElement('li');
             row.className = 'list-group-item col-xs-6 text-center';
-            const rowContent = document.createTextNode(`${item.number1} X ${item.number2} = ${item.answer}`);
+            const rowContent = document.createTextNode(`${item.number1} / ${item.number2} = ${item.answer}`);
             row.appendChild(rowContent);
-            if(n1*n2 == item.answer){
+            if(n1/n2 == item.answer){
                 correctList.appendChild(row);
-                console.log('correct');
+                // console.log('correct');
                 row.style.color = "green";
             } else{
                 wrongList.appendChild(row);
-                console.log('wrong');
+                // console.log('wrong');
                 row.style.color = "red";
             }
 
             
-            console.log(row)
+            // console.log(row)
+            // console.log('task equal division');
         }
+
+
+
+        
     })
 
 })

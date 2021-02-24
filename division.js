@@ -24,8 +24,11 @@ reset.addEventListener("click", gameReset)
 
 
 function generateNumbers(){
-    document.querySelector('#num1').innerHTML = Math.floor(Math.random() * 9) + 1
-    document.querySelector('#num2').innerHTML = Math.floor(Math.random() * 9) + 1
+    let num1 = Math.floor(Math.random() * 9) + 1
+    let num2 = Math.floor(Math.random() * 9) + 1
+    let num3 = num1*num2
+    document.querySelector('#num1').innerHTML = num3
+    document.querySelector('#num2').innerHTML = num2
 }
 
 
@@ -106,7 +109,7 @@ function check(){
     const n1 = document.querySelector('#num1').textContent
     const n2 = document.querySelector('#num2').textContent
     const answer = document.getElementById('answer').value
-    let result = n1*n2
+    let result = n1/n2
     let ratio = calcRatio(score)
     if(answer == ""){
         document.getElementById('feedback').innerHTML = `<h3>You must answer</h3>`
@@ -125,7 +128,7 @@ function check(){
         document.getElementById('answer').value = ''
         document.getElementById('answer').focus()
         window.setTimeout(clearWrong, 1000);
-        sessionNumbers.push({"number1" :n1, "number2":n2, "answer": answer, "task": 'multiply'})
+        sessionNumbers.push({"number1" :n1, "number2":n2, "answer": answer, "task": 'division'})
 
     }
     else{
@@ -134,7 +137,7 @@ function check(){
         document.getElementById('answer').value = ''
         document.getElementById('answer').focus()
         window.setTimeout(clearWrong, 1000);
-        sessionNumbers.push({"number1" :n1, "number2":n2, "answer": answer, "task": 'multiply' })
+        sessionNumbers.push({"number1" :n1, "number2":n2, "answer": answer, "task": 'division'})
     }
     console.log(sessionNumbers)
 }

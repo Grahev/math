@@ -5,12 +5,7 @@
 }
 
 
-.numbers {
-    display: flex;
-    justify-content: center;
-    width: 90%;
-    margin: 25px;
-}
+
 h1 {
     font-size: 3rem !important;
 }
@@ -53,19 +48,9 @@ textarea:focus, input:focus{
 }
 
 
-.button-container{
-    margin: 10px;
-    display: flex;
-    justify-content: center;
-}
 
-.container {
-    display: flex;
-    justify-content: center;
-    margin: 25px;
-    border-bottom: 1px dotted;
-    padding-bottom: 25px;
-}
+
+
 
 
 
